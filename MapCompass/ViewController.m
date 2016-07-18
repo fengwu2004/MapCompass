@@ -8,13 +8,15 @@
 
 #import "ViewController.h"
 #import "MyView.h"
+#import "IDRBaseLocationServer.h"
+#import <CoreLocation/CoreLocation.h>
 
 #define KScreenWidth       [UIScreen mainScreen].bounds.size.width
 
 #define KScreenHeight      [UIScreen mainScreen].bounds.size.height
 
 
-@interface ViewController ()
+@interface ViewController ()<IDRBaseLocationServerDelegate>
 
 @property (nonatomic, retain) MyView *myView;
 
@@ -30,9 +32,32 @@
     
     [_myView setCenter:CGPointMake(0.5 * KScreenWidth, 0.5 * KScreenHeight)];
     
-    [_myView setBackgroundColor:[UIColor grayColor]];
+    [_myView setMagneticHeading:M_PI * 0.3];
     
     [self.view addSubview:_myView];
+    
+    [[IDRBaseLocationServer sharedInstance] setDelegate:self];
+    
+    [[IDRBaseLocationServer sharedInstance] startUpdateHeading];
+}
+
+- (void)didGetRangeBeacons:(NSArray*)beacons {
+    
+    
+}
+
+- (void)didGetDeviceHeading:(CLHeading*)heading {
+    
+    CGFloat value = heading.magneticHeading * M_PI/180.0;
+    
+    NSLog(@"%.2f", value);
+    
+    if (value > M_PI) {
+        
+        value = value - 2 * M_PI;
+    }
+    
+    [_myView setMagneticHeading:value];
 }
 
 - (void)didReceiveMemoryWarning {

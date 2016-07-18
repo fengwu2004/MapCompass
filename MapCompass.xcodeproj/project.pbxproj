@@ -14,6 +14,10 @@
 		2CE147F01D3CA7D100C8D7F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE147EF1D3CA7D100C8D7F8 /* Assets.xcassets */; };
 		2CE147F31D3CA7D100C8D7F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE147F11D3CA7D100C8D7F8 /* LaunchScreen.storyboard */; };
 		2CE147FC1D3CA80900C8D7F8 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE147FB1D3CA80900C8D7F8 /* MyView.m */; };
+		2CE148001D3CC1B800C8D7F8 /* YF_LocationIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE147FF1D3CC1B800C8D7F8 /* YF_LocationIndicator.png */; };
+		2CE148031D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE148021D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m */; };
+		2CE148061D3CCEBF00C8D7F8 /* IDRLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE148051D3CCEBF00C8D7F8 /* IDRLogManager.m */; };
+		2CE148081D3CCF6D00C8D7F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE148071D3CCF6D00C8D7F8 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,12 @@
 		2CE147F41D3CA7D100C8D7F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CE147FA1D3CA80900C8D7F8 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
 		2CE147FB1D3CA80900C8D7F8 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
+		2CE147FF1D3CC1B800C8D7F8 /* YF_LocationIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YF_LocationIndicator.png; sourceTree = "<group>"; };
+		2CE148011D3CCEAA00C8D7F8 /* IDRBaseLocationServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDRBaseLocationServer.h; sourceTree = "<group>"; };
+		2CE148021D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDRBaseLocationServer.m; sourceTree = "<group>"; };
+		2CE148041D3CCEBF00C8D7F8 /* IDRLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDRLogManager.h; sourceTree = "<group>"; };
+		2CE148051D3CCEBF00C8D7F8 /* IDRLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDRLogManager.m; sourceTree = "<group>"; };
+		2CE148071D3CCF6D00C8D7F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE148081D3CCF6D00C8D7F8 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +56,7 @@
 		2CE147D71D3CA7D100C8D7F8 = {
 			isa = PBXGroup;
 			children = (
+				2CE148071D3CCF6D00C8D7F8 /* CoreLocation.framework */,
 				2CE147E21D3CA7D100C8D7F8 /* MapCompass */,
 				2CE147E11D3CA7D100C8D7F8 /* Products */,
 			);
@@ -61,6 +73,11 @@
 		2CE147E21D3CA7D100C8D7F8 /* MapCompass */ = {
 			isa = PBXGroup;
 			children = (
+				2CE148041D3CCEBF00C8D7F8 /* IDRLogManager.h */,
+				2CE148051D3CCEBF00C8D7F8 /* IDRLogManager.m */,
+				2CE148011D3CCEAA00C8D7F8 /* IDRBaseLocationServer.h */,
+				2CE148021D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m */,
+				2CE147FF1D3CC1B800C8D7F8 /* YF_LocationIndicator.png */,
 				2CE147E61D3CA7D100C8D7F8 /* AppDelegate.h */,
 				2CE147E71D3CA7D100C8D7F8 /* AppDelegate.m */,
 				2CE147E91D3CA7D100C8D7F8 /* ViewController.h */,
@@ -144,6 +161,7 @@
 				2CE147F31D3CA7D100C8D7F8 /* LaunchScreen.storyboard in Resources */,
 				2CE147F01D3CA7D100C8D7F8 /* Assets.xcassets in Resources */,
 				2CE147EE1D3CA7D100C8D7F8 /* Main.storyboard in Resources */,
+				2CE148001D3CC1B800C8D7F8 /* YF_LocationIndicator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE148061D3CCEBF00C8D7F8 /* IDRLogManager.m in Sources */,
 				2CE147FC1D3CA80900C8D7F8 /* MyView.m in Sources */,
 				2CE147EB1D3CA7D100C8D7F8 /* ViewController.m in Sources */,
+				2CE148031D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m in Sources */,
 				2CE147E81D3CA7D100C8D7F8 /* AppDelegate.m in Sources */,
 				2CE147E51D3CA7D100C8D7F8 /* main.m in Sources */,
 			);
