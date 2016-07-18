@@ -91,7 +91,7 @@
     
     CGFloat dash[] = {1,10};
     
-    [path setLineDash:dash count:2 phase:0];
+    [path setLineDash:dash count:2 phase:1];
     
     // 设置画笔颜色
     UIColor *strokeColor = [UIColor blueColor];
@@ -114,7 +114,7 @@
     
     CGFloat dash[] = {4, length - 4};
     
-    [path setLineDash:dash count:2 phase:0];
+    [path setLineDash:dash count:2 phase:2];
     
     // 设置画笔颜色
     UIColor *strokeColor = [UIColor blueColor];
