@@ -28,11 +28,11 @@
     
     [super viewDidLoad];
     
-    _myView = [[MyView alloc] initWithFrame:CGRectMake(0, 0, 210, 210)];
+    _myView = [[MyView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     
     [_myView setCenter:CGPointMake(0.5 * KScreenWidth, 0.5 * KScreenHeight)];
     
-    [_myView setMagneticHeading:M_PI * 0.3];
+    [_myView setMagneticHeading:0.001];
     
     [self.view addSubview:_myView];
     
