@@ -13,7 +13,7 @@
 		2CE147EE1D3CA7D100C8D7F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE147EC1D3CA7D100C8D7F8 /* Main.storyboard */; };
 		2CE147F01D3CA7D100C8D7F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE147EF1D3CA7D100C8D7F8 /* Assets.xcassets */; };
 		2CE147F31D3CA7D100C8D7F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CE147F11D3CA7D100C8D7F8 /* LaunchScreen.storyboard */; };
-		2CE147FC1D3CA80900C8D7F8 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE147FB1D3CA80900C8D7F8 /* MyView.m */; };
+		2CE147FC1D3CA80900C8D7F8 /* IDRMapAnchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE147FB1D3CA80900C8D7F8 /* IDRMapAnchor.m */; };
 		2CE148001D3CC1B800C8D7F8 /* YF_LocationIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CE147FF1D3CC1B800C8D7F8 /* YF_LocationIndicator.png */; };
 		2CE148031D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE148021D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m */; };
 		2CE148061D3CCEBF00C8D7F8 /* IDRLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE148051D3CCEBF00C8D7F8 /* IDRLogManager.m */; };
@@ -31,8 +31,8 @@
 		2CE147EF1D3CA7D100C8D7F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CE147F21D3CA7D100C8D7F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CE147F41D3CA7D100C8D7F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CE147FA1D3CA80900C8D7F8 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
-		2CE147FB1D3CA80900C8D7F8 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
+		2CE147FA1D3CA80900C8D7F8 /* IDRMapAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDRMapAnchor.h; sourceTree = "<group>"; };
+		2CE147FB1D3CA80900C8D7F8 /* IDRMapAnchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDRMapAnchor.m; sourceTree = "<group>"; };
 		2CE147FF1D3CC1B800C8D7F8 /* YF_LocationIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YF_LocationIndicator.png; sourceTree = "<group>"; };
 		2CE148011D3CCEAA00C8D7F8 /* IDRBaseLocationServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDRBaseLocationServer.h; sourceTree = "<group>"; };
 		2CE148021D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDRBaseLocationServer.m; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 				2CE147F11D3CA7D100C8D7F8 /* LaunchScreen.storyboard */,
 				2CE147F41D3CA7D100C8D7F8 /* Info.plist */,
 				2CE147E31D3CA7D100C8D7F8 /* Supporting Files */,
-				2CE147FA1D3CA80900C8D7F8 /* MyView.h */,
-				2CE147FB1D3CA80900C8D7F8 /* MyView.m */,
+				2CE147FA1D3CA80900C8D7F8 /* IDRMapAnchor.h */,
+				2CE147FB1D3CA80900C8D7F8 /* IDRMapAnchor.m */,
 			);
 			path = MapCompass;
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CE148061D3CCEBF00C8D7F8 /* IDRLogManager.m in Sources */,
-				2CE147FC1D3CA80900C8D7F8 /* MyView.m in Sources */,
+				2CE147FC1D3CA80900C8D7F8 /* IDRMapAnchor.m in Sources */,
 				2CE147EB1D3CA7D100C8D7F8 /* ViewController.m in Sources */,
 				2CE148031D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m in Sources */,
 				2CE147E81D3CA7D100C8D7F8 /* AppDelegate.m in Sources */,
@@ -326,6 +326,7 @@
 				2CE147F91D3CA7D100C8D7F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

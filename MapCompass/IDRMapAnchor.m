@@ -1,16 +1,12 @@
 //
-//  MyView.m
-//  MapCompass
+//  IDRMapAnchor.m
+//  IndoorunMap_Core
 //
-//  Created by ky on 16/7/18.
+//  Created by ky on 16/7/19.
 //  Copyright © 2016年 yellfun. All rights reserved.
 //
 
-#import "MyView.h"
-
-#define KScreenWidth       [UIScreen mainScreen].bounds.size.width
-
-#define KScreenHeight      [UIScreen mainScreen].bounds.size.height
+#import "IDRMapAnchor.h"
 
 #define FONT_WIDTH 19
 
@@ -18,7 +14,7 @@
 
 #define FONT_SIZE 10
 
-@interface MyView()
+@interface IDRMapAnchor ()
 
 @property (nonatomic, retain) UILabel *labSouth;
 @property (nonatomic, retain) UILabel *labNorth;
@@ -27,14 +23,18 @@
 @property (nonatomic, retain) UILabel *labWest;
 
 @property (nonatomic, retain) UIImageView *bgImageView;
+@property (nonatomic, retain) UIImageView * bgBlueView;
 
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, assign) CGFloat radius;
 
+@property (nonatomic, assign) BOOL isAnimating;
+
+
 @end
 
-@implementation MyView
+@implementation IDRMapAnchor
 
 - (void)addLabels {
     
@@ -96,6 +96,8 @@
     
     self = [super initWithFrame:frame];
     
+    _showCompass = YES;
+    
     _width = frame.size.width;
     
     _height = frame.size.height;
@@ -114,22 +116,65 @@
     [self addSubview:_bgImageView];
     
     //
+    _bgBlueView = [[UIImageView alloc] initWithFrame:self.bounds];
+    
+    [_bgBlueView setBackgroundColor:[UIColor colorWithRed:0 green:135.0/255.0 blue:1 alpha:0.5]];
+    
+    [_bgBlueView.layer setCornerRadius:_bgBlueView.frame.size.width/2];
+    
+    _bgBlueView.alpha = 0;
+    
+    [self addSubview:_bgBlueView];
+    
+    //
     [self setBackgroundColor:[UIColor clearColor]];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationAnimationZoomIn) name:@"zoomIn" object:nil];
+    
     return self;
+}
+
+- (void)locationAnimationZoomIn
+{
+    if (_isAnimating) {
+        
+        return;
+    }
+    
+    _isAnimating = YES;
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        
+        _bgBlueView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        
+        _bgBlueView.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        _isAnimating = NO;
+        
+        _bgBlueView.transform = CGAffineTransformMakeScale(0, 0);
+        
+        _bgBlueView.alpha = 1;
+    }];
+}
+
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"zoomIn" object:nil];
 }
 
 - (void)drawLowLevel {
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    if (_magneticHeading > 0) {
+    if (_northAngle > 0) {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _magneticHeading endAngle:2 * M_PI - M_PI * 0.5 clockwise:YES];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:2 * M_PI - M_PI * 0.5 clockwise:YES];
     }
     else {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _magneticHeading endAngle:2 * M_PI - M_PI * 0.5 clockwise:NO];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:2 * M_PI - M_PI * 0.5 clockwise:NO];
     }
     
     path.lineWidth = 2;
@@ -170,18 +215,36 @@
     [path stroke];
 }
 
-- (void)drawRect:(CGRect)rect {
+- (void)setShowCompass:(BOOL)showCompass {
     
-    [self drawLowLevel];
+    _showCompass = showCompass;
     
-    [self drawNextLevel];
-    
-    [self drawArc];
-    
-    [self drawNorthPoint];
+    [self setNeedsDisplay];
 }
 
-- (void)drawNorthPoint {
+- (void)drawRect:(CGRect)rect {
+    
+    if (_showCompass) {
+        
+        [self drawLowLevel];
+        
+        [self drawNextLevel];
+        
+        [self drawArc];
+        
+        [self drawMiddlePoint];
+    }
+    
+    [_labEast setHidden:!_showCompass];
+    
+    [_labSouth setHidden:!_showCompass];
+    
+    [_labNorth setHidden:!_showCompass];
+    
+    [_labWest setHidden:!_showCompass];
+}
+
+- (void)drawMiddlePoint {
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
@@ -194,23 +257,28 @@
     [path fill];
 }
 
-- (void)setMagneticHeading:(CGFloat)magneticHeading {
+- (void)setNorthAngle:(CGFloat)northAngle {
     
-    _magneticHeading = magneticHeading;
+    if (northAngle > M_PI) {
+        
+        northAngle = northAngle - 2 * M_PI;
+    }
     
-    _bgImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, _magneticHeading);
+    _northAngle = northAngle;
+    
+    _bgImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, _northAngle);
     
     [self setNeedsDisplay];
 }
 
 - (UIColor*)retriveArcColor {
     
-    if (ABS(_magneticHeading) > M_PI_4) {
+    if (ABS(_northAngle) > M_PI_4) {
         
         return [UIColor colorWithRed:0xf5/255.0 green:0x29/255.0 blue:0x01/255.0 alpha:1];;
     }
     
-    if (ABS(_magneticHeading) > M_PI * 35.0/180.0) {
+    if (ABS(_northAngle) > M_PI * 35.0/180.0) {
         
         return [UIColor colorWithRed:0xff/255.0 green:0x90/255.0 blue:0x37/255.0 alpha:1];
     }
@@ -222,13 +290,13 @@
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    if (_magneticHeading > 0) {
+    if (_northAngle > 0) {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _magneticHeading endAngle:-M_PI * 0.5 clockwise:NO];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 clockwise:NO];
     }
     else {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _magneticHeading endAngle:-M_PI * 0.5 clockwise:YES];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 clockwise:YES];
     }
     
     path.lineWidth = 5;
@@ -241,7 +309,5 @@
     // 根据我们设置的各个点连线
     [path stroke];
 }
-
-
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "MyView.h"
+#import "IDRMapAnchor.h"
 #import "IDRBaseLocationServer.h"
 #import <CoreLocation/CoreLocation.h>
 
@@ -18,7 +18,7 @@
 
 @interface ViewController ()<IDRBaseLocationServerDelegate>
 
-@property (nonatomic, retain) MyView *myView;
+@property (nonatomic, retain) IDRMapAnchor *myView;
 
 @end
 
@@ -28,11 +28,11 @@
     
     [super viewDidLoad];
     
-    _myView = [[MyView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _myView = [[IDRMapAnchor alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     
     [_myView setCenter:CGPointMake(0.5 * KScreenWidth, 0.5 * KScreenHeight)];
     
-    [_myView setMagneticHeading:0.001];
+    [_myView setNorthAngle:0.001];
     
     [self.view addSubview:_myView];
     
@@ -57,7 +57,7 @@
         value = value - 2 * M_PI;
     }
     
-    [_myView setMagneticHeading:value];
+    [_myView setNorthAngle:value];
 }
 
 - (void)didReceiveMemoryWarning {
