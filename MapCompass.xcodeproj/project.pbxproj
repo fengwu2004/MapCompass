@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C9D00D21D41AF4A004AAF07 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D00D11D41AF4A004AAF07 /* MyView.m */; };
 		2CE147E51D3CA7D100C8D7F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE147E41D3CA7D100C8D7F8 /* main.m */; };
 		2CE147E81D3CA7D100C8D7F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE147E71D3CA7D100C8D7F8 /* AppDelegate.m */; };
 		2CE147EB1D3CA7D100C8D7F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE147EA1D3CA7D100C8D7F8 /* ViewController.m */; };
@@ -21,12 +22,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C9D00D01D41AF4A004AAF07 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		2C9D00D11D41AF4A004AAF07 /* MyView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = MyView.m; sourceTree = "<group>"; };
 		2CE147E01D3CA7D100C8D7F8 /* MapCompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapCompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE147E41D3CA7D100C8D7F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2CE147E61D3CA7D100C8D7F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2CE147E71D3CA7D100C8D7F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2CE147E91D3CA7D100C8D7F8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2CE147EA1D3CA7D100C8D7F8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2CE147EA1D3CA7D100C8D7F8 /* ViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = ViewController.m; sourceTree = "<group>"; };
 		2CE147ED1D3CA7D100C8D7F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CE147EF1D3CA7D100C8D7F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CE147F21D3CA7D100C8D7F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				2CE147E31D3CA7D100C8D7F8 /* Supporting Files */,
 				2CE147FA1D3CA80900C8D7F8 /* IDRMapAnchor.h */,
 				2CE147FB1D3CA80900C8D7F8 /* IDRMapAnchor.m */,
+				2C9D00D01D41AF4A004AAF07 /* MyView.h */,
+				2C9D00D11D41AF4A004AAF07 /* MyView.m */,
 			);
 			path = MapCompass;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 				2CE148031D3CCEAA00C8D7F8 /* IDRBaseLocationServer.m in Sources */,
 				2CE147E81D3CA7D100C8D7F8 /* AppDelegate.m in Sources */,
 				2CE147E51D3CA7D100C8D7F8 /* main.m in Sources */,
+				2C9D00D21D41AF4A004AAF07 /* MyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -168,13 +168,13 @@
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    if (_northAngle > 0) {
+    if (_northAngle > _middleAngle) {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:2 * M_PI - M_PI * 0.5 clockwise:YES];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 + _middleAngle - 2 * M_PI clockwise:YES];
     }
     else {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:2 * M_PI - M_PI * 0.5 clockwise:NO];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 + _middleAngle - 2 * M_PI clockwise:NO];
     }
     
     path.lineWidth = 2;
@@ -233,6 +233,8 @@
         [self drawArc];
         
         [self drawMiddlePoint];
+        
+        [self drawLine];
     }
     
     [_labEast setHidden:!_showCompass];
@@ -244,11 +246,39 @@
     [_labWest setHidden:!_showCompass];
 }
 
+- (void)drawLine {
+    
+    UIColor *color = [UIColor redColor];
+    
+    [color set];
+    
+    CGPoint start = CGPointMake(1, 0);
+    
+    CGPoint end = CGPointMake(50, 50);
+    
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    
+    bezierPath.lineWidth = 2;
+    
+    [bezierPath moveToPoint:start];
+    
+    [bezierPath addLineToPoint:end];
+    
+    [bezierPath closePath];
+    
+    // 根据我们设置的各个点连线
+    [bezierPath stroke];
+}
+
 - (void)drawMiddlePoint {
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    [path addArcWithCenter:CGPointMake(_width * 0.5, 6) radius:6 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+    CGFloat radius = _radius;
+    
+    CGPoint point = CGPointMake(_width * 0.5 + radius * sin(_middleAngle), _height * 0.5 - radius * cos(_middleAngle));
+    
+    [path addArcWithCenter:point radius:6 startAngle:0 endAngle:2 * M_PI clockwise:YES];
     
     UIColor *color = [UIColor colorWithRed:0 green:135.0/255.0 blue:1 alpha:1];
     
@@ -290,13 +320,13 @@
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    if (_northAngle > 0) {
+    if (_northAngle > _middleAngle) {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 clockwise:NO];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 + _middleAngle clockwise:NO];
     }
     else {
         
-        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 clockwise:YES];
+        [path addArcWithCenter:CGPointMake(_width * 0.5, _height * 0.5) radius:_radius startAngle:-M_PI * 0.5 + _northAngle endAngle:-M_PI * 0.5 + _middleAngle clockwise:YES];
     }
     
     path.lineWidth = 5;
